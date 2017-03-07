@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        html, body {
+            margin:0;
+            height:100%;
+            /*overflow: hidden; */
+        }
+    </style>
+</head>
+<body>
+<div id="infomation" style="position:absolute; right:0; background-color:lightgrey; padding:10px; height:200px;">
+    <button id="buttonStart">Start</button>
+    <button id="buttonStop">Stop</button>
+    <button id="buttonStep">Step</button>
+    <button id="buttonReset">Reset</button>
+    <div>Tick<span id="tick"></span></div>
+    <div>Tick%4<span id="tick4"></span></div>
+    <div>MODE:<span id="mode"></span></div>
+    
+    <div id="pallet">
+        <span id="pBlack" data-v="0" style="width:16px;height:16px;background-color:black;display:inline-block;"></span>
+        <span id="pBlue" data-v="1" style="width:16px;height:16px;background-color:blue;display:inline-block;"></span>
+        <span id="pRed"  data-v="2" style="width:16px;height:16px;background-color:red;display:inline-block;"></span>
+        <span id="pYellow" data-v="3" style="width:16px;height:16px;background-color:yellow;display:inline-block;"></span>
+    </div>
+</div>
+
+<canvas id="myCanvas"></canvas>
+<script src="index.js"></script>
+
+</body>
+</html>
+
