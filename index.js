@@ -64,9 +64,7 @@ function initHandler() {
         x = e.clientX - rect.left;
         y = e.clientY - rect.top;
         if (Math.floor(y / boxSize) < gridRows && Math.floor(x / boxSize) < gridColumns) {
-            console.log(currentChooseCell);
             grid[Math.floor(y / boxSize)][Math.floor(x / boxSize)] = currentChooseCell;
-            console.log(Math.floor(y / boxSize), Math.floor(x / boxSize));
 
             drawGrid(gridColumns, gridRows);
             showInfo();
@@ -74,6 +72,39 @@ function initHandler() {
             console.log("out of canvas.")
         }
     });
+    var mousedown;
+    $('myCanvas').addEventListener('mousedown', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        mousedown = true;
+    });
+    $('myCanvas').addEventListener('mouseup', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        mousedown = false;
+    });
+    $('myCanvas').addEventListener('mousemove', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        if (mousedown) {
+            console.log(e.button);
+            var rect = e.target.getBoundingClientRect();
+            x = e.clientX - rect.left;
+            y = e.clientY - rect.top;
+            if (Math.floor(y / boxSize) < gridRows && Math.floor(x / boxSize) < gridColumns) {
+                if (e.button === 2) {
+                grid[Math.floor(y / boxSize)][Math.floor(x / boxSize)] = 0;
+                } else {
+                grid[Math.floor(y / boxSize)][Math.floor(x / boxSize)] = currentChooseCell;
+                }
+
+                drawGrid(gridColumns, gridRows);
+                showInfo();
+            }
+        }
+    });
+    // delete (set empty cell)
     $('myCanvas').addEventListener('contextmenu', function(e) {
         e.preventDefault();
         e.stopPropagation();
@@ -87,7 +118,6 @@ function initHandler() {
         drawGrid(gridColumns, gridRows);
         showInfo();
     });
-
 }
 
 function init() {
@@ -109,7 +139,7 @@ function init() {
 
 var frame = 0;
 var tick;
-var boxSize = 15;
+var boxSize = 12;
 var timer = 0;
 var mode;
 var flagStep = false;
